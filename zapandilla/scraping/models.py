@@ -2,14 +2,13 @@
 
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Zapatilla(models.Model):
-    """Model definition for Zapatilla."""
-
-    name = models.CharField(max_length=250)
+    """Model definition for Zapatilla."""    
+    name = models.CharField(max_length=250)    
     description = models.CharField(max_length=250)
     price = models.CharField(max_length=250)
     currrent_price = models.CharField(max_length=250)
@@ -30,7 +29,7 @@ class Zapatilla(models.Model):
 
     def __str__(self):
         """Unicode representation of Zapatilla."""
-        return self.description, self.price
+        return self.description
         
         
 
