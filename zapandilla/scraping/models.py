@@ -23,8 +23,8 @@ class Zapatilla(models.Model):
     class Meta:
         """Meta definition for Zapatilla."""
         ordering = ['name']
-        verbose_name = 'Zapatilla'
-        verbose_name_plural = 'Zapatillas'
+        verbose_name = 'Sparta Zapatilla'
+        verbose_name_plural = 'Sparta Zapatillas'
         unique_together = ("description", "price")        
 
     def __str__(self):

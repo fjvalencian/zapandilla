@@ -1,16 +1,11 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
+# scraping models
+from scraping.models import Zapatilla
 
+class ZapatillaListView(ListView):
 
-# Create your views here.
-
-class HomePageView(TemplateView):
-
-    template_name = "frontend/base.html"
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['latest_articles'] = Article.objects.all()[:5]
-    #     return context
-
+    model = Zapatilla
+    template_name = 'frontend/home.html'
+    #paginate_by = 100  # if pagination is desired
     
