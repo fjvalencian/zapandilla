@@ -1,117 +1,60 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
-
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
 
-
-{% for zapa in zapatilla_list  %}
-    {{zapa.price}}
-{% endfor %}
-
-
 <section class="products">
 
     <!-- Products -->
+  {% for zapa in zapatilla_list  %}
     <div class="product-card">
+      
       <div class="product-image">
-        <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
+        <img src="{{zapa.image}}" />
       </div>
+      
       <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
+        <h5>{{zapa.description}}</h5>
+        <h6>{{zapa.price}}</h6>
       </div>
+    
     </div>
-    <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-        </div>
-        <div class="product-info">
-          <h5>Winter Jacket</h5>
-          <h6>$99.99</h6>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-        </div>
-        <div class="product-info">
-          <h5>Winter Jacket</h5>
-          <h6>$99.99</h6>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-        </div>
-        <div class="product-info">
-          <h5>Winter Jacket</h5>
-          <h6>$99.99</h6>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-        </div>
-        <div class="product-info">
-          <h5>Winter Jacket</h5>
-          <h6>$99.99</h6>
-        </div>
-      </div>
-    <!-- End products-->
-        <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-  
-            <div class="product-card">
-                <div class="product-image">
-                  <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-                </div>
-                <div class="product-info">
-                  <h5>Winter Jacket</h5>
-                  <h6>$99.99</h6>
-                </div>
-              </div>
-              <div class="product-card">
-                  <div class="product-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-                  </div>
-                  <div class="product-info">
-                    <h5>Winter Jacket</h5>
-                    <h6>$99.99</h6>
-                  </div>
-                </div>
-                <div class="product-card">
-                  <div class="product-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-                  </div>
-                  <div class="product-info">
-                    <h5>Winter Jacket</h5>
-                    <h6>$99.99</h6>
-                  </div>
-                </div>
-                <div class="product-card">
-                  <div class="product-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-                  </div>
-                  <div class="product-info">
-                    <h5>Winter Jacket</h5>
-                    <h6>$99.99</h6>
-                  </div>
-                </div>
-                <div class="product-card">
-                  <div class="product-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369">
-                  </div>
-                  <div class="product-info">
-                    <h5>Winter Jacket</h5>
-                    <h6>$99.99</h6>
-                  </div>
-                </div>
-            <!--end products-->
-            
-  
+    
+  {% endfor %}
 </section> 
+
+<!-- Menú de paginación -->
+{% if is_paginated %}
+
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li>
+          <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        </li>
+      {% else %}
+        <li>
+          <a href="#" tabindex="-1">&laquo;</a>
+        </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+        <li class="{% if page_obj.number == i %}current{% endif %}">
+          <a href="?page={{ i }}">{{ i }}</a>
+        </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li>
+          <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        </li>
+      {% else %}
+        <li>
+          <a href="#" tabindex="-1">&raquo;</a>
+        </li>
+      {% endif %}
+    </ul>
+  
+{% endif %}
 
 {% endblock %}
     

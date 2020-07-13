@@ -7,5 +7,5 @@ class ZapatillaListView(ListView):
 
     model = Zapatilla
     template_name = 'frontend/home.html'
-    #paginate_by = 100  # if pagination is desired
+    paginate_by = 20  # if pagination is desired
     

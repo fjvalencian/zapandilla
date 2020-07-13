@@ -13,7 +13,7 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
    
-        for page in range(1,2):
+        for page in range(1,7):
             
             html = urlopen('https://sparta.cl/zapatillas.html?p={}'.format(page))
             
